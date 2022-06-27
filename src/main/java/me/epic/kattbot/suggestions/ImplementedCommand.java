@@ -38,7 +38,7 @@ public class ImplementedCommand extends ListenerAdapter {
             em.setTitle(" ", null);
             em.setColor(0x22ff00);
             em.addField("Implemented Suggestion:", suggestion.getSuggestion(), false);
-            event.getHook().getJDA().getGuildById(983059905806204938L).getTextChannelById(983115701516660736L).sendMessageEmbeds(em.build()).queue();
+            event.getHook().getJDA().getGuildById(Utils.getGuildId()).getTextChannelById(983115701516660736L).sendMessageEmbeds(em.build()).queue();
             event.getHook().sendMessage("Suggestion #" + suggestionNumber + " Has been implemented").setEphemeral(true).queue();
         }
 

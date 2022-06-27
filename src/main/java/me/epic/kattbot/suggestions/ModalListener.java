@@ -35,7 +35,7 @@ public class ModalListener extends ListenerAdapter {
             em.addField("Approved Suggestion:", suggestion.getSuggestion(), false);
             em.addField(userName + " Approved because:", acceptReason, false);
 
-            event.getHook().getJDA().getGuildById(983059905806204938L).getTextChannelById(983115701516660736L).sendMessageEmbeds(em.build()).queue();
+            event.getHook().getJDA().getGuildById(Utils.getGuildId()).getTextChannelById(983115701516660736L).sendMessageEmbeds(em.build()).queue();
             event.reply("Suggestion #" + suggestionNumber + " Has been accepted").setEphemeral(true).queue();
         }
         if (event.getModalId().equals("deny-modal")) {
@@ -56,7 +56,7 @@ public class ModalListener extends ListenerAdapter {
             em.setColor(0xfc0303);
             em.addField("Denied Suggestion:", suggestion.getSuggestion(), false);
             em.addField(userName + " Denied because:", denyReason, false);
-            event.getHook().getJDA().getGuildById(983059905806204938L).getTextChannelById(983115701516660736L).sendMessageEmbeds(em.build()).queue();
+            event.getHook().getJDA().getGuildById(Utils.getGuildId()).getTextChannelById(983115701516660736L).sendMessageEmbeds(em.build()).queue();
             event.reply("Suggestion #" + suggestionNumber + " Has been denied").setEphemeral(true).queue();
         }
         if (event.getModalId().equals("implement-modal")) {
@@ -74,7 +74,7 @@ public class ModalListener extends ListenerAdapter {
             em.setTitle(" ", null);
             em.setColor(0x22ff00);
             em.addField("Implemented Suggestion:", suggestion.getSuggestion(), false);
-            event.getHook().getJDA().getGuildById(983059905806204938L).getTextChannelById(983115701516660736L).sendMessageEmbeds(em.build()).queue();
+            event.getHook().getJDA().getGuildById(Utils.getGuildId()).getTextChannelById(983115701516660736L).sendMessageEmbeds(em.build()).queue();
             event.reply("Suggestion #" + suggestionNumber + " Has been implemented").setEphemeral(true).queue();
         }
     }

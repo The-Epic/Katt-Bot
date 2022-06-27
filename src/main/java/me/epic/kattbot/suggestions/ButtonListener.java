@@ -38,7 +38,6 @@ public class ButtonListener extends ListenerAdapter {
                     .addActionRows(ActionRow.of(approveInt), ActionRow.of(approveReason))
                     .build();
             event.replyModal(modal).queue();
-            return;
         } else if (event.getComponentId().equals("deny") && event.getMember().getRoles().contains(role)) {
             TextInput denyInt = TextInput.create("deny-int", "Number", TextInputStyle.SHORT)
                     .setMinLength(1)

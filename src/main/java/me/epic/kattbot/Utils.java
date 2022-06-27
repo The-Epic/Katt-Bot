@@ -61,7 +61,7 @@ public class Utils {
         em.setTitle(" ", null);
         em.setColor(0x4EFF31);
         em.addField("New suggestion! #" + suggestionID, userSuggestion, false);
-        plugin.getDiscordBot().getGuildById(983059905806204938L).getTextChannelById(983114713955176498L)
+        plugin.getDiscordBot().getGuildById(Utils.getGuildId()).getTextChannelById(983114713955176498L)
                 .sendMessageEmbeds(em.build()).setActionRow(
                         Button.success("approve", "Approve"),
                         Button.danger("deny", "Deny"),
@@ -86,5 +86,9 @@ public class Utils {
                 ex.printStackTrace();
             }
         });
+    }
+
+    public static long getGuildId() {
+        return 983059905806204938L;
     }
 }

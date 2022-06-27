@@ -41,7 +41,7 @@ public class DenyCommand extends ListenerAdapter {
             em.setColor(0xfc0303);
             em.addField("Denied Suggestion:", suggestion.getSuggestion(), false);
             em.addField(userName + " Denied because:", denyReason, false);
-            event.getHook().getJDA().getGuildById(983059905806204938L).getTextChannelById(983115701516660736L).sendMessageEmbeds(em.build()).queue();
+            event.getHook().getJDA().getGuildById(Utils.getGuildId()).getTextChannelById(983115701516660736L).sendMessageEmbeds(em.build()).queue();
             event.getHook().sendMessage("Suggestion #" + suggestionNumber + " Has been denied").setEphemeral(true).queue();
         }
 

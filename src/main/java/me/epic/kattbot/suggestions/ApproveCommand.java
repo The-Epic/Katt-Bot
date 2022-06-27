@@ -42,7 +42,7 @@ public class ApproveCommand extends ListenerAdapter {
             em.addField("Approved Suggestion:", suggestion.getSuggestion(), false);
             em.addField(userName + " Approved because:", acceptReason, false);
 
-            event.getHook().getJDA().getGuildById(983059905806204938L).getTextChannelById(983115701516660736L).sendMessageEmbeds(em.build()).queue();
+            event.getHook().getJDA().getGuildById(Utils.getGuildId()).getTextChannelById(983115701516660736L).sendMessageEmbeds(em.build()).queue();
             event.getHook().sendMessage("Suggestion #" + suggestionNumber + " Has been accepted").setEphemeral(true).queue();
         }
 
