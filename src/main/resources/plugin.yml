@@ -1,0 +1,13 @@
+name: KattBot
+version: '${project.version}'
+main: me.epic.kattbot.KattBot
+api-version: 1.19
+authors: [ Epic ]
+
+commands:
+  suggest:
+    permission: kb.suggest
+
+permissions:
+  kb.suggest:
+    default: op
