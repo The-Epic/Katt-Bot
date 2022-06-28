@@ -1,7 +1,10 @@
 package me.epic.kattbot;
 
 import me.epic.kattbot.database.DatabaseConnectionPool;
+import me.epic.kattbot.moderation.BanCommand;
+import me.epic.kattbot.moderation.KickCommand;
 import me.epic.kattbot.suggestions.*;
+import me.epic.kattbot.UserJoin;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -37,12 +40,16 @@ public final class KattBot extends JavaPlugin {
                     .addEventListeners(new SuggestCommand(this)).addEventListeners(new ApproveCommand(this))
                     .addEventListeners(new DenyCommand(this)).addEventListeners(new ImplementedCommand(this))
                     .addEventListeners(new ButtonListener(this)).addEventListeners(new ModalListener(this))
+                    .addEventListeners(new KickCommand(this)).addEventListeners(new BanCommand(this))
+                    //User Join listener
+                    .addEventListeners(new UserJoin(this))
                     //Join Message Intent
                     .enableIntents(GatewayIntent.GUILD_MEMBERS)
                     .build().awaitReady();
         } catch (LoginException | InterruptedException e) {
             e.printStackTrace();
         }
+        discordBot.updateCommands();
 
         //Command Registering
         Guild testServer = discordBot.getGuildById(983059905806204938L);
@@ -57,6 +64,14 @@ public final class KattBot extends JavaPlugin {
                     .addOption(OptionType.STRING, "reason", "reason of denial").queue();
             testServer.upsertCommand("implemented", "Marks a suggestion as implemented")
                     .addOption(OptionType.INTEGER, "number", "selects the suggestion number").queue();
+            testServer.upsertCommand("kick", "Kicks a member")
+                    .addOption(OptionType.USER, "member", "selects the member", true)
+                    .addOption(OptionType.STRING, "reason", "adds a reason").queue();
+            testServer.upsertCommand("ban", "Ban a member")
+                    .addOption(OptionType.USER, "member", "selects the member", true)
+                    .addOption(OptionType.STRING, "reason", "adds a reason")
+                    .addOption(OptionType.INTEGER, "deletedays", "number of days to delete there messages from").queue();
+
         }
 
         this.getCommand("suggest").setExecutor(new MinecraftSuggestCommand(this));
