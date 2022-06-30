@@ -3,6 +3,7 @@ package me.epic.kattbot;
 import me.epic.kattbot.database.DatabaseConnectionPool;
 import me.epic.kattbot.moderation.BanCommand;
 import me.epic.kattbot.moderation.KickCommand;
+import me.epic.kattbot.moderation.StrangerThingsFilter;
 import me.epic.kattbot.suggestions.*;
 import me.epic.kattbot.UserJoin;
 import net.dv8tion.jda.api.JDA;
@@ -41,10 +42,11 @@ public final class KattBot extends JavaPlugin {
                     .addEventListeners(new DenyCommand(this)).addEventListeners(new ImplementedCommand(this))
                     .addEventListeners(new ButtonListener(this)).addEventListeners(new ModalListener(this))
                     .addEventListeners(new KickCommand(this)).addEventListeners(new BanCommand(this))
+                    .addEventListeners(new StrangerThingsFilter(this))
                     //User Join listener
                     .addEventListeners(new UserJoin(this))
                     //Join Message Intent
-                    .enableIntents(GatewayIntent.GUILD_MEMBERS)
+                    .enableIntents(GatewayIntent.GUILD_MEMBERS).enableIntents(GatewayIntent.GUILD_MESSAGES)
                     .build().awaitReady();
         } catch (LoginException | InterruptedException e) {
             e.printStackTrace();
@@ -69,8 +71,7 @@ public final class KattBot extends JavaPlugin {
                     .addOption(OptionType.STRING, "reason", "adds a reason").queue();
             testServer.upsertCommand("ban", "Ban a member")
                     .addOption(OptionType.USER, "member", "selects the member", true)
-                    .addOption(OptionType.STRING, "reason", "adds a reason")
-                    .addOption(OptionType.INTEGER, "deletedays", "number of days to delete there messages from").queue();
+                    .addOption(OptionType.STRING, "reason", "adds a reason").queue();
 
         }
 
