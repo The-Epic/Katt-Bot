@@ -36,7 +36,7 @@ public final class KattBot extends JavaPlugin {
             return;
         }
         try {
-            this.discordBot = JDABuilder.createDefault(token).setActivity(Activity.playing("KattSMP"))
+            this.discordBot = JDABuilder.createDefault(token).setActivity(Activity.watching("KattSMP Discord"))
                     //Add event listeners for slash commands
                     .addEventListeners(new SuggestCommand(this)).addEventListeners(new ApproveCommand(this))
                     .addEventListeners(new DenyCommand(this)).addEventListeners(new ImplementedCommand(this))

@@ -45,6 +45,7 @@
                                     </exclude>
                                 </excludes>
                             </artifactSet>
+                            <minimizeJar>true</minimizeJar>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                         </configuration>
                     </execution>
