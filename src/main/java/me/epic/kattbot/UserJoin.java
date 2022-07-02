@@ -16,14 +16,14 @@ public class UserJoin extends ListenerAdapter {
 
     @Override
     public void onGuildMemberJoin(GuildMemberJoinEvent event) {
-        String userId = event.getUser().getId();
         String user = event.getMember().getAsMention();
         String userName = event.getMember().getEffectiveName();
         String userTag = event.getUser().getDiscriminator();
+        int joinNumber = event.getGuild().getMemberCount();
         String userAvatar = event.getUser().getAvatarUrl();
         EmbedBuilder em = new EmbedBuilder();
         em.setAuthor("Member: " + userName + "#" + userTag + " joined", null, userAvatar);
-        em.addField("Welcome!", user + " To the server!", false);
+        em.addField("Welcome!", user + " is the " + joinNumber + "th to join!", false);
         plugin.getDiscordBot().getGuildById(Utils.getGuildId()).getTextChannelById(983070600853606430L).sendMessageEmbeds(em.build()).queue();
         Guild guild = event.getGuild();
         Role member = guild.getRoleById(983848826345488384L);
